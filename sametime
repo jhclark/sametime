@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -ueo pipefail
+scriptDir=$(dirname $0)
+
+scalaLib=$SCALA_HOME/lib/scala-library.jar
+if [ ! -e $scalaLib ]; then
+   echo >&2 "ERROR: Library not found $scalaLib"
+   exit 1
+fi
+
+java -cp $scalaLib:$scriptDir/sametime.jar SameTime "$@"
